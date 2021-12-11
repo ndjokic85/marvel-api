@@ -1,8 +1,7 @@
 {
   "require": {
     "phpunit/phpunit": "^9.5",
-    "webonyx/graphql-php": "^14.11",
-    "pecee/simple-router": "4.3.7.2"
+    "webonyx/graphql-php": "^14.11"
   },
   "autoload": {
     "psr-4": {
