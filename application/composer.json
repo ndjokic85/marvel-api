@@ -1,5 +1,17 @@
 {
-    "require": {
-        "phpunit/phpunit": "^9.5"
+  "require": {
+    "phpunit/phpunit": "^9.5",
+    "webonyx/graphql-php": "^14.11",
+    "pecee/simple-router": "4.3.7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  }
 }
