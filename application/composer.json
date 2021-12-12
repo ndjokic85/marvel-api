@@ -1,7 +1,8 @@
 {
   "require": {
     "phpunit/phpunit": "^9.5",
-    "webonyx/graphql-php": "^14.11"
+    "webonyx/graphql-php": "^14.11",
+    "predis/predis": "^1.1"
   },
   "autoload": {
     "psr-4": {
