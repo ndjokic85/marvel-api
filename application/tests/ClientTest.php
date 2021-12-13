@@ -5,18 +5,33 @@ namespace Tests;
 use App\Clients\CachedClient;
 use App\Clients\Client;
 use PHPUnit\Framework\TestCase;
+use Predis\Client as RedisClient;
 
 class ClientTest extends TestCase
 {
+    private string $publicKey;
+    private string $privateKey;
+    private string $redisHostName;
 
-    public function testRequestCanBeSentSuccessfully()
+    function setUp(): void
     {
-        $publicKey = "099736801919555940ca6d07b6bb444c";
-        $privateKey = "993e6f1936115d09ee54c906f9648702c9c5ca7a";
-        $client = new Client($publicKey, $privateKey);
-        $cachedClient = new CachedClient($client);
-        $cachedClient->send();
+        $this->publicKey = "099736801919555940ca6d07b6bb444c";
+        $this->privateKey = "993e6f1936115d09ee54c906f9648702c9c5ca7a";
+        $this->redisHostName = 'app_redis';
+    }
 
-       // $this->assertSame($collection->count(), $iterations);
+    public function testClientCanSuccessfullySendHttpRequest()
+    {
+        $client = new Client($this->publicKey, $this->privateKey);
+        $response = $client->send();
+        $this->assertEquals(200, $response->code);
+    }
+
+    public function testCachedResponseCanBeRetrievedFromRedis()
+    {
+        $cachedClient = new CachedClient(new Client($this->publicKey, $this->privateKey));
+        $cachedResponse = $cachedClient->send();
+        $redisClient =  new RedisClient(['host' => $this->redisHostName]);
+        $this->assertEquals($cachedResponse, unserialize($redisClient->get('comics')));
     }
 }

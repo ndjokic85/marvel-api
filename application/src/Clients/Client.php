@@ -2,6 +2,8 @@
 
 namespace App\Clients;
 
+use stdClass;
+
 class Client implements IClient
 {
     const BASE_URL = 'http://gateway.marvel.com/v1/public/';
@@ -20,7 +22,7 @@ class Client implements IClient
         $this->privateKey = $privateKey;
     }
 
-    public function send()
+    public function send(): stdClass
     {
         $ts = time();
         $hash = md5("{$ts}{$this->privateKey}{$this->publicKey}");
@@ -29,7 +31,8 @@ class Client implements IClient
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-        return json_decode(curl_exec($ch), true);
+        return json_decode(curl_exec($ch));
     }
 }

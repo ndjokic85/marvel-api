@@ -2,7 +2,9 @@
 
 namespace App\Clients;
 
+use stdClass;
+
 interface IClient
 {
-    public function send();
+    public function send(): stdClass;
 }
