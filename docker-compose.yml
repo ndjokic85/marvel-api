@@ -3,7 +3,6 @@ services:
   nginx:
     image: nginx:stable-alpine
     container_name: marvel_nginx
-    restart: unless-stopped
     ports: 
       - "8080:80"
     volumes:
@@ -17,7 +16,6 @@ services:
       context: ./
       dockerfile: docker/php/app.dockerfile
     container_name: marvel_api
-    restart: unless-stopped
     volumes: 
       - ./application:/var/www
       
