@@ -6,6 +6,7 @@ use App\Types;
 use Exception;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ResolveInfo;
+use GraphQL\Type\Definition\Type;
 
 class ComicType extends ObjectType
 {
@@ -16,6 +17,7 @@ class ComicType extends ObjectType
             'fields' => static fn (): array => [
                 'id' => Types::id(),
                 'title' => Types::string(),
+                'focDate' => Types::string(),
                 'fieldWithError' => [
                     'type' => Types::string(),
                     'resolve' => static function (): void {

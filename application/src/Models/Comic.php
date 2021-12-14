@@ -8,6 +8,7 @@ class Comic
 {
     public int $id;
     public string $title;
+    public string $focDate;
 
     public function __construct(array $data)
     {

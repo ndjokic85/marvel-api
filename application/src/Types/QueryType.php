@@ -35,9 +35,14 @@ class QueryType extends ObjectType
                         'title' => [
                             'type' => Types::string(),
                             'description' => 'Search by title',
-                            'defaultValue'=>''
+                            'defaultValue' => ''
 
                         ],
+                        'sort' => [
+                            'type' => Types::string(),
+                            'description' => 'Sort comics',
+                            'defaultValue' => 'focDate'
+                        ]
                     ],
                 ],
                 'hello' => Type::string(),
@@ -61,7 +66,7 @@ class QueryType extends ObjectType
 
     public function comics($rootValue, array $args): array
     {
-        return $this->comicRepository->search($args['title'], $args['limit'], $args['offset']);
+        return $this->comicRepository->search($args['title'], $args['limit'], $args['offset'],$args['sort']);
     }
 
     public function hello(): string
