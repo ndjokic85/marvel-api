@@ -23,8 +23,8 @@ class ClientTest extends TestCase
     public function testClientCanSuccessfullySendHttpRequest()
     {
         $client = new Client($this->publicKey, $this->privateKey);
-        $response = $client->send();
-        $this->assertEquals(200, $response->code);
+        $responseData = $client->send();
+        $this->assertNotEmpty($responseData);
     }
 
     public function testCachedResponseCanBeRetrievedFromRedis()

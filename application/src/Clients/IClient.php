@@ -6,5 +6,5 @@ use stdClass;
 
 interface IClient
 {
-    public function send(): stdClass;
+    public function send(): array;
 }

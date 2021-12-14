@@ -3,7 +3,6 @@
 namespace App\Clients;
 
 use Predis\Client;
-use stdClass;
 
 class CachedClient implements IClient
 {
@@ -16,7 +15,7 @@ class CachedClient implements IClient
     $this->redisClient = new Client(['host' => 'app_redis']);
   }
 
-  public function send(): stdClass
+  public function send(): array
   {
     $cachedComics = $this->redisClient->get('comics');
     if (!$cachedComics) {

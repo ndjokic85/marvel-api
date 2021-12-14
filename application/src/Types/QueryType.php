@@ -45,7 +45,6 @@ class QueryType extends ObjectType
                         ]
                     ],
                 ],
-                'hello' => Type::string(),
                 'deprecatedField' => [
                     'type' => Types::string(),
                     'deprecationReason' => 'This field is deprecated!',
@@ -66,11 +65,6 @@ class QueryType extends ObjectType
 
     public function comics($rootValue, array $args): array
     {
-        return $this->comicRepository->search($args['title'], $args['limit'], $args['offset'],$args['sort']);
-    }
-
-    public function hello(): string
-    {
-        return 'Your graphql-php endpoint is ready!';
+        return $this->comicRepository->search($args['title'], $args['limit'], $args['offset'], $args['sort']);
     }
 }
