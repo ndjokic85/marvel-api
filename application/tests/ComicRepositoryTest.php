@@ -6,15 +6,14 @@ use App\Clients\CachedClient;
 use App\Clients\Client;
 use App\Repositories\ComicRepository;
 use App\Repositories\IComicRepository;
-use PHPUnit\Framework\TestCase;
 
-class ComicRepositoryTest extends TestCase
+class ComicRepositoryTest extends BaseTest
 {
     private IComicRepository $comicRepository;
 
     function setUp(): void
     {
-        $client = new Client('099736801919555940ca6d07b6bb444c', '993e6f1936115d09ee54c906f9648702c9c5ca7a');
+        $client = new Client($_ENV['MARVEL_PUBLIC_KEY'], $_ENV['MARVEL_PRIVATE_KEY']);
         $this->comicRepository = new ComicRepository(new CachedClient($client));
     }
 

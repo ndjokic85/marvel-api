@@ -12,7 +12,7 @@ class CachedClient implements IClient
   public function __construct(IClient $client)
   {
     $this->client = $client;
-    $this->redisClient = new Client(['host' => 'app_redis']);
+    $this->redisClient = new Client(['host' => $_ENV['REDIS_HOST_NAME']]);
   }
 
   public function send(): array
